@@ -2,7 +2,10 @@ import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/commo
 import { MotelRoomService } from './motel-room.service';
 import { createMotelRoomDto } from './dto/create-motel-room-dto';
 import { updateMotelRoomDto } from './dto/update-motel-room-dto';
+import { ApiTags, ApiSecurity } from '@nestjs/swagger';
 
+@ApiTags('motel-room')
+@ApiSecurity('api_key')
 @Controller('motel-room')
 export class MotelRoomController {
     constructor(private motelRoomService: MotelRoomService) {}

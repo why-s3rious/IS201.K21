@@ -11,7 +11,10 @@ import { UserService } from './user.service';
 import { identity } from 'rxjs';
 import { createUserDto } from './dto/create-user-dto';
 import { updateUserDto } from './dto/update-user-dto';
+import { ApiTags, ApiSecurity } from '@nestjs/swagger';
 
+@ApiTags('user')
+@ApiSecurity('api_key')
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}

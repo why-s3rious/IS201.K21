@@ -2,7 +2,10 @@ import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/commo
 import { createRecieptDto } from './dto/create-reciept-dto';
 import { updateRecieptDto } from './dto/update-reciept-dto';
 import { RecieptService } from './reciept.service';
+import { ApiTags, ApiSecurity } from '@nestjs/swagger';
 
+@ApiTags('reciept')
+@ApiSecurity('api_key')
 @Controller('reciept')
 export class RecieptController {
     constructor(private recieptService: RecieptService) {}

@@ -2,7 +2,10 @@ import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/commo
 import { ContractService } from './contract.service';
 import { createContractDto } from './dto/create-contract-dto';
 import { updateContractDto } from './dto/update-contract-dto';
+import { ApiTags, ApiSecurity } from '@nestjs/swagger';
 
+@ApiTags('contract')
+@ApiSecurity('api_key')
 @Controller('contract')
 export class ContractController {
   constructor(private contractService: ContractService) {}
