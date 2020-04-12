@@ -1,0 +1,9 @@
+
+{
+    "type": "mongodb",
+    "url": "mongodb+srv://anhtu:0938615915@cluster0-ffgjh.mongodb.net/test?retryWrites=true&w=majority",
+    "ssl": "true",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "synchronize": "true",
+    "useNewUrlParser": "true"
+}
