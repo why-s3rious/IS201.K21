@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch, Delete, Req } from '@nestjs/common';
 import { createRecieptDto } from './dto/create-reciept-dto';
 import { updateRecieptDto } from './dto/update-reciept-dto';
 import { RecieptService } from './reciept.service';
@@ -11,8 +11,8 @@ export class RecieptController {
     constructor(private recieptService: RecieptService) {}
 
     @Get()
-    all() {
-      return this.recieptService.all();
+    all(@Req() req) {
+      return this.recieptService.all(req);
     }
     @Get(':id')
     getById(@Param('id') id) {

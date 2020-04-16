@@ -3,6 +3,8 @@ import { MOTEL_ROOM } from 'src/shared/constant.shema';
 import { MotelRoomModel } from './motel-room.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { QueryOption } from 'src/shared/config-option-query';
+import { Pagination } from 'src/shared/service';
 
 @Injectable()
 export class MotelRoomService {
@@ -10,8 +12,8 @@ export class MotelRoomService {
     @InjectModel(MOTEL_ROOM) private motelRoomModel: Model<MotelRoomModel>,
   ) {}
 
-  async all() {
-    return await this.motelRoomModel.find();
+  async all(options:QueryOption) {
+    return await Pagination(this.motelRoomModel,options);
   }
   async findById(id) {
     return await this.motelRoomModel.findById(id);

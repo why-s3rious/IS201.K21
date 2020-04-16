@@ -3,6 +3,8 @@ import { PAYMENT } from 'src/shared/constant.shema';
 import { PaymentModel } from './payment.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Pagination } from 'src/shared/service';
+import { QueryOption } from 'src/shared/config-option-query';
 
 @Injectable()
 export class PaymentService {
@@ -10,8 +12,8 @@ export class PaymentService {
         @InjectModel(PAYMENT) private paymentModel : Model<PaymentModel>
     ){}
 
-    async all(){
-        return await this.paymentModel.find();
+    async all(options:QueryOption){
+        return await Pagination(this.paymentModel,options)
     }
    async findById(id){
         return await this.paymentModel.findById(id)

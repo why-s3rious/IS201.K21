@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch, Delete, Req } from '@nestjs/common';
 import { ContractService } from './contract.service';
 import { createContractDto } from './dto/create-contract-dto';
 import { updateContractDto } from './dto/update-contract-dto';
@@ -11,8 +11,8 @@ export class ContractController {
   constructor(private contractService: ContractService) {}
 
   @Get()
-  all() {
-    return this.contractService.all();
+  all(@Req() req) {
+    return this.contractService.all(req);
   }
   @Get(':id')
   getById(@Param('id') id) {

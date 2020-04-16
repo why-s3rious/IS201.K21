@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CONTRACT } from 'src/shared/constant.shema';
 import { Model } from 'mongoose';
 import { ContractModel } from './contract.model';
+import { Pagination } from 'src/shared/service';
+import { QueryOption } from 'src/shared/config-option-query';
 
 @Injectable()
 export class ContractService {
@@ -10,8 +12,8 @@ export class ContractService {
         @InjectModel(CONTRACT) private contractModel : Model<ContractModel>
     ){}
 
-    async all(){
-        return await this.contractModel.find();
+    async all(options:QueryOption){
+        return await Pagination(this.contractModel,options);
     }
    async findById(id){
         return await this.contractModel.findById(id)

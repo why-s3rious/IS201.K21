@@ -3,6 +3,8 @@ import { RECEIPT } from 'src/shared/constant.shema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RecieptModel } from './reciept.model';
+import { QueryOption } from 'src/shared/config-option-query';
+import { Pagination } from 'src/shared/service';
 
 @Injectable()
 export class RecieptService {
@@ -10,8 +12,8 @@ export class RecieptService {
         @InjectModel(RECEIPT) private recieptModel : Model<RecieptModel>
     ){}
 
-    async all(){
-        return await this.recieptModel.find();
+    async all(options:QueryOption){
+        return await Pagination(this.recieptModel,options);
     }
    async findById(id){
         return await this.recieptModel.findById(id)

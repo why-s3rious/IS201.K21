@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   Patch,
+  Req,
 } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { ApiTags, ApiSecurity } from '@nestjs/swagger';
@@ -18,8 +19,8 @@ export class AccountController {
   constructor(private accountService: AccountService) {}
 
   @Get()
-  all() {
-    return this.accountService.all();
+  all(@Req() req) {
+    return this.accountService.all(req.query);
   }
 
   @Get(':id')

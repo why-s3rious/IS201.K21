@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch, Delete, Req } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { createPaymentDto } from './dto/create-payment-dto';
 import { updatePaymentDto } from './dto/update-payment-dto';
@@ -11,8 +11,8 @@ export class PaymentController {
     constructor(private paymentService: PaymentService) {}
 
     @Get()
-    all() {
-      return this.paymentService.all();
+    all(@Req() req) {
+      return this.paymentService.all(req);
     }
     @Get(':id')
     getById(@Param('id') id) {

@@ -6,6 +6,7 @@ import {
   Body,
   Patch,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { identity } from 'rxjs';
@@ -20,8 +21,8 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  all() {
-    return this.userService.all();
+  all(@Req() req) {
+    return this.userService.all(req);
   }
   @Get(':id')
   getById(@Param('id') id) {

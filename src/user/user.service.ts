@@ -3,13 +3,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { USER } from 'src/shared/constant.shema';
 import { Model } from 'mongoose';
 import {UserModel} from './user.model';
+import { QueryOption } from 'src/shared/config-option-query';
+import { Pagination } from 'src/shared/service';
 @Injectable()
 export class UserService {
     constructor(
         @InjectModel(USER) private userModel:Model<UserModel> 
     ){}
-   async all(){
-        return await this.userModel.find();
+   async all(options : QueryOption){
+        return await Pagination(this.userModel,options)
     }
    async findById(id){
         return await this.userModel.findById(id)

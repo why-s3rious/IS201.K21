@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch, Delete, Req } from '@nestjs/common';
 import { MotelRoomService } from './motel-room.service';
 import { createMotelRoomDto } from './dto/create-motel-room-dto';
 import { updateMotelRoomDto } from './dto/update-motel-room-dto';
@@ -11,8 +11,8 @@ export class MotelRoomController {
     constructor(private motelRoomService: MotelRoomService) {}
 
     @Get()
-    all() {
-      return this.motelRoomService.all();
+    all(@Req() req) {
+      return this.motelRoomService.all(req);
     }
     @Get(':id')
     getById(@Param('id') id) {
